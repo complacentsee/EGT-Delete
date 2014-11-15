@@ -9,6 +9,10 @@
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
@@ -4611,6 +4615,54 @@ NS Package M08A</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="wirepad">
+<description>&lt;b&gt;Single Pads&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="3,17/1,3">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.524" y1="-1.016" x2="1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="-1.524" x2="1.016" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="-1.524" x2="-1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="-1.524" x2="-1.524" y2="-1.016" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.016" x2="-1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.524" x2="-1.016" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="1.524" x2="1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="1.524" x2="1.524" y2="1.016" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="2" diameter="3.175" shape="octagon"/>
+<text x="-1.524" y="1.905" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1.2" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="PAD">
+<wire x1="-1.016" y1="1.016" x2="1.016" y2="-1.016" width="0.254" layer="94"/>
+<wire x1="-1.016" y1="-1.016" x2="1.016" y2="1.016" width="0.254" layer="94"/>
+<text x="-1.143" y="1.8542" size="1.778" layer="95">&gt;NAME</text>
+<text x="-1.143" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="P" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="3,17/1,3" prefix="PAD" uservalue="yes">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<gates>
+<gate name="1" symbol="PAD" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="3,17/1,3">
+<connects>
+<connect gate="1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -4629,6 +4681,9 @@ NS Package M08A</description>
 <part name="R3-1" library="adafruit" deviceset="R-US_" device="R0805" value="1k"/>
 <part name="C2" library="adafruit" deviceset="C-US" device="C0805" value=".47u"/>
 <part name="C1" library="adafruit" deviceset="C-US" device="C0805" value="0.01u"/>
+<part name="VBAT" library="wirepad" deviceset="3,17/1,3" device=""/>
+<part name="GND" library="wirepad" deviceset="3,17/1,3" device="" value="GND"/>
+<part name="SIGBANK1" library="wirepad" deviceset="3,17/1,3" device="" value="SIGBANK1"/>
 </parts>
 <sheets>
 <sheet>
@@ -4643,13 +4698,16 @@ NS Package M08A</description>
 <instance part="R3-1" gate="G$1" x="53.34" y="40.64" rot="R270"/>
 <instance part="C2" gate="G$1" x="17.78" y="0"/>
 <instance part="C1" gate="G$1" x="40.64" y="40.64"/>
+<instance part="VBAT" gate="1" x="-25.4" y="73.66"/>
+<instance part="GND" gate="1" x="-25.4" y="66.04"/>
+<instance part="SIGBANK1" gate="1" x="-25.4" y="55.88"/>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="VBAT" class="0">
 <segment>
-<wire x1="2.54" y1="73.66" x2="-15.24" y2="73.66" width="0.2032" layer="91"/>
+<wire x1="-22.86" y1="73.66" x2="-15.24" y2="73.66" width="0.2032" layer="91"/>
 <wire x1="-15.24" y1="73.66" x2="-15.24" y2="119.38" width="0.2032" layer="91"/>
 <wire x1="-15.24" y1="119.38" x2="127" y2="119.38" width="0.2032" layer="91"/>
 <wire x1="127" y1="119.38" x2="127" y2="76.2" width="0.2032" layer="91"/>
@@ -4665,7 +4723,7 @@ NS Package M08A</description>
 <wire x1="109.22" y1="60.96" x2="109.22" y2="76.2" width="0.2032" layer="91"/>
 <wire x1="109.22" y1="76.2" x2="109.22" y2="81.28" width="0.2032" layer="91"/>
 <wire x1="127" y1="76.2" x2="109.22" y2="76.2" width="0.2032" layer="91"/>
-<label x="-10.16" y="73.66" size="1.778" layer="95"/>
+<label x="-15.24" y="78.74" size="1.778" layer="95"/>
 <label x="20.32" y="60.96" size="1.778" layer="95"/>
 <label x="101.6" y="81.28" size="1.778" layer="95"/>
 <pinref part="R3-2" gate="G$1" pin="1"/>
@@ -4673,6 +4731,7 @@ NS Package M08A</description>
 <pinref part="C1" gate="G$1" pin="1"/>
 <pinref part="R3-1" gate="G$1" pin="1"/>
 <pinref part="SE555" gate="A" pin="V+"/>
+<pinref part="VBAT" gate="1" pin="P"/>
 </segment>
 <segment>
 <wire x1="81.28" y1="91.44" x2="73.66" y2="91.44" width="0.2032" layer="91"/>
@@ -4682,13 +4741,13 @@ NS Package M08A</description>
 </net>
 <net name="GND" class="0">
 <segment>
-<wire x1="2.54" y1="71.12" x2="-10.16" y2="71.12" width="0.2032" layer="91"/>
-<label x="-10.16" y="71.12" size="1.778" layer="95"/>
-</segment>
-<segment>
 <wire x1="81.28" y1="81.28" x2="73.66" y2="81.28" width="0.2032" layer="91"/>
 <label x="73.66" y="81.28" size="1.778" layer="95"/>
 <pinref part="SE555" gate="A" pin="GND"/>
+<wire x1="73.66" y1="81.28" x2="7.62" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="81.28" x2="7.62" y2="66.04" width="0.1524" layer="91"/>
+<pinref part="GND" gate="1" pin="P"/>
+<wire x1="7.62" y1="66.04" x2="-22.86" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="71.12" y1="10.16" x2="71.12" y2="-20.32" width="0.2032" layer="91"/>
@@ -4704,15 +4763,17 @@ NS Package M08A</description>
 </net>
 <net name="SIGBANK1" class="0">
 <segment>
-<wire x1="2.54" y1="68.58" x2="-10.16" y2="68.58" width="0.2032" layer="91"/>
-<wire x1="2.54" y1="63.5" x2="-10.16" y2="63.5" width="0.2032" layer="91"/>
-<wire x1="-10.16" y1="63.5" x2="-10.16" y2="68.58" width="0.2032" layer="91"/>
-<label x="-10.16" y="68.58" size="1.778" layer="95"/>
-</segment>
-<segment>
-<wire x1="71.12" y1="30.48" x2="71.12" y2="35.56" width="0.2032" layer="91"/>
+<wire x1="71.12" y1="30.48" x2="71.12" y2="33.02" width="0.2032" layer="91"/>
 <pinref part="Q1" gate="G$1" pin="D"/>
 <pinref part="R3-2" gate="G$1" pin="2"/>
+<pinref part="SIGBANK1" gate="1" pin="P"/>
+<wire x1="71.12" y1="33.02" x2="71.12" y2="35.56" width="0.2032" layer="91"/>
+<wire x1="-22.86" y1="55.88" x2="-5.08" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="-5.08" y1="55.88" x2="-5.08" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="-5.08" y1="-30.48" x2="88.9" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="-30.48" x2="88.9" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="-30.48" x2="88.9" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="33.02" x2="71.12" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="DIS" class="0">
